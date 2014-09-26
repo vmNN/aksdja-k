@@ -1,0 +1,64 @@
+#include <iostream>
+#include <string.h>
+
+char vowelremover(char incoming);
+
+int main(){
+using namespace std;
+    
+    
+    printf("Please input the string you want backwards: ");
+    
+    char input[80];
+    gets(input);
+    
+    unsigned long int a = strlen(input);
+    
+    printf("Backwards: ");
+    
+    for (unsigned long int i = a ; i != 0; --i) {
+        printf("%c", input[i - 1]);
+    }
+    
+    
+    /*  */
+    printf("\n\n\n");
+    /*  */
+    
+    
+    string result;
+    for (int i = 0; i < a; ++i) {
+        char quick;
+        quick = vowelremover(input[i]);
+        
+        if (quick != '\\'){
+            result = result + quick;
+        }
+    }
+    cout << "Without vowels: " << result << endl;
+    
+    
+    printf("\n");
+    
+    cin.get();
+
+}
+
+char vowelremover(char incoming){
+
+    if ((incoming == 'a') || (incoming == 'A'))
+        return '\\';
+    else if (( incoming == 'e') || (incoming == 'E'))
+        return '\\';
+    else if (( incoming == 'i') || (incoming == 'I'))
+        return '\\';
+    else if (( incoming == 'o') || (incoming == 'O'))
+        return '\\';
+    else if (( incoming == 'u') || (incoming == 'U'))
+        return '\\';
+    else{
+        return incoming;
+    }
+    
+    return incoming;
+}
