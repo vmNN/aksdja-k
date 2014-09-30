@@ -1,64 +1,139 @@
 #include <iostream>
-#include <string.h>
+#include <stdio.h>
 
-char vowelremover(char incoming);
+using namespace std;
+
+void func(string ops);
 
 int main(){
-using namespace std;
+    cout << "1) Print Addition Table" << endl;
+    cout << "2) Print Subtraction Table" << endl;
+    cout << "3) Print Multiplication Table" << endl;
+    cout << "4) Exit Program" << endl;
     
+    cout << endl << "Enter Choice: ";
+    int choice;
+    cin >> choice;
     
-    printf("Please input the string you want backwards: ");
-    
-    char input[80];
-    gets(input);
-    
-    unsigned long int a = strlen(input);
-    
-    printf("Backwards: ");
-    
-    for (unsigned long int i = a ; i != 0; --i) {
-        printf("%c", input[i - 1]);
-    }
-    
-    
-    /*  */
-    printf("\n\n\n");
-    /*  */
-    
-    
-    string result;
-    for (int i = 0; i < a; ++i) {
-        char quick;
-        quick = vowelremover(input[i]);
+    switch (choice){
+        case 1:
+            cout << "Addition table!" << endl;
+            func("+");
+            break;
         
-        if (quick != '\\'){
-            result = result + quick;
-        }
+        case 2:
+            cout << "Subtraction table!" << endl;
+            func("-");
+            break;
+        
+        case 3:
+            cout << "Multiplication table!" << endl;
+            func("*");
+            break;
+        
+        case 4:
+            cout << "End of Program." << endl;
+            exit(0);
+            break;
+            
+        default:
+            cout << "Not a Valid Choice." << endl;
+            main();
+            break;
     }
-    cout << "Without vowels: " << result << endl;
-    
-    
-    printf("\n");
-    
-    cin.get();
-
+    return 0;
 }
 
-char vowelremover(char incoming){
-
-    if ((incoming == 'a') || (incoming == 'A'))
-        return '\\';
-    else if (( incoming == 'e') || (incoming == 'E'))
-        return '\\';
-    else if (( incoming == 'i') || (incoming == 'I'))
-        return '\\';
-    else if (( incoming == 'o') || (incoming == 'O'))
-        return '\\';
-    else if (( incoming == 'u') || (incoming == 'U'))
-        return '\\';
-    else{
-        return incoming;
-    }
+void func(string ops){
+    int fint, sint;
+    bool ftof = false;
     
-    return incoming;
+    while (!ftof){
+    
+        cout << endl << "Please input number between 1 and 12: ";
+        cin >> fint;
+
+        if ((fint >= 1) && (fint <= 12)){
+            
+            ftof = true;
+            bool stof = false;
+            
+            while (!stof) {
+                cout << "Please input a number between " << fint << " and 12: ";
+                cin >> sint;
+                cout << endl;
+        
+                if ((sint >= fint) && (sint <= 12)){
+                    stof = true;
+                    int count = 0;
+                    
+                    if (ops == "+"){
+                        cout << "+ |\t";
+                    }
+            
+                    else if (ops == "*"){
+                        cout << "* |\t";
+                    }
+            
+                    else if (ops == "-"){
+                        cout << "- |\t";
+                    }
+            
+                    for (int i = fint; i < (sint + 1); ++i){
+                        cout << i << "\t";
+                        ++count;
+                    }
+
+                    cout << endl;
+            
+                    for (int i = 0; i <= count; ++i){
+                        cout << "----";
+                    }
+            
+                    cout << endl;
+
+                    for (int i = fint; i <= sint; ++i){
+                
+                        if (i >= 10){
+                            cout << i << "|\t";
+                        }
+                        else{
+                            cout << i << " |\t";
+                        }
+                
+                
+                        for (int p = fint; p <= sint; ++p){
+                            
+                            if (ops == "+"){
+                                cout << i + p << "\t";
+                            }
+                            else if (ops == "*"){
+                                cout << i * p << "\t";
+                            }
+                            else if (ops == "-"){
+                                cout << i - p << "\t";
+                            }
+                            
+                        }
+                        cout << endl;
+                    }
+                    cout << endl;
+    
+                }
+                else{
+                    cout << "Out of range" << endl;
+        
+                }
+            }
+        }
+        else{
+            cout << "Out of range" << endl;
+        }
+    
+    }
+
+    cout << "Please push \"Enter\": ";
+    cin.get();
+    cin.ignore();
+    main();
 }
